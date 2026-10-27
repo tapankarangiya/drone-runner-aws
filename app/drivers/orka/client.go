@@ -54,7 +54,9 @@ type deployVMRequest struct {
 	SystemSerial   string            `json:"systemSerial,omitempty"`
 	ReservedPorts  string            `json:"reservedPorts,omitempty"`
 	CustomMetadata map[string]string `json:"customMetadata,omitempty"`
-	Timeout        int               `json:"timeout,omitempty"`
+	// Timeout is the server-side deploy timeout, in MINUTES (Orka's unit), not seconds. The driver
+	// converts its seconds-based config to minutes before populating this (see driver.go).
+	Timeout int `json:"timeout,omitempty"`
 }
 
 // deployVMResponse mirrors v1.OrkaVMDeployResponseModel. No forwarded-port field is echoed back
